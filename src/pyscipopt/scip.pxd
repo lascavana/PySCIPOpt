@@ -282,8 +282,10 @@ cdef extern from "scip/scip.h":
 
     ctypedef struct SCIP:
         SCIP_SET* set
-        SCIP_STAT* stat
         SCIP_LP* lp
+
+    ctypedef struct SCIP_SET:
+        pass
 
     ctypedef struct SCIP_VAR:
         pass

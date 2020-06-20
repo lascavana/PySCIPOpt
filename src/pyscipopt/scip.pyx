@@ -5,6 +5,7 @@ from os.path import abspath
 from os.path import splitext
 import sys
 import warnings
+import numpy as np
 
 cimport cython
 cimport numpy as np
