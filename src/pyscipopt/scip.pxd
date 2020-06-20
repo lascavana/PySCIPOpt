@@ -281,7 +281,9 @@ cdef extern from "scip/scip.h":
     ctypedef double SCIP_Real
 
     ctypedef struct SCIP:
-        pass
+        SCIP_SET* set
+        SCIP_STAT* stat
+        SCIP_LP* lp
 
     ctypedef struct SCIP_VAR:
         pass
@@ -1665,6 +1667,9 @@ cdef extern from "scip/lp.h":
                                        SCIP_SET* set,
                                        SCIP_LP* lp)
     SCIP_Real SCIPcolGetObj(SCIP_COL *col)
+
+cdef extern from "scip/def.h":
+    SCIP_Real REALABS(SCIP_Real x)
 
 cdef extern from "scip/scip_tree.h":
     SCIP_RETCODE SCIPgetOpenNodesData(SCIP* scip, SCIP_NODE*** leaves, SCIP_NODE*** children, SCIP_NODE*** siblings, int* nleaves, int* nchildren, int* nsiblings)

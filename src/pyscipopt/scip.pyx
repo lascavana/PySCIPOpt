@@ -7,10 +7,12 @@ import sys
 import warnings
 
 cimport cython
+cimport numpy as np
 from cpython cimport Py_INCREF, Py_DECREF
 from cpython.pycapsule cimport PyCapsule_New, PyCapsule_IsValid, PyCapsule_GetPointer
 from libc.stdlib cimport malloc, free
 from libc.stdio cimport fdopen
+from libc.math cimport sqrt as SQRT
 
 include "expr.pxi"
 include "lp.pxi"
