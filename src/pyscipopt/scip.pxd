@@ -1277,6 +1277,21 @@ cdef extern from "scip/scip.h":
 cdef extern from "scip/tree.h":
     int SCIPnodeGetNAddedConss(SCIP_NODE* node)
 
+cdef extern from "scip/lp.h":
+    SCIP_Real SCIPlpGetObjNorm(SCIP_LP* lp)
+    void SCIPlpRecalculateObjSqrNorm(SCIP_SET* set, SCIP_LP* lp)
+    SCIP_Real SCIProwGetNorm(SCIP_ROW* row)
+    SCIP_Real SCIProwGetDualsol(SCIP_ROW* row)
+    int SCIProwGetAge(SCIP_ROW* row)
+    SCIP_Real SCIProwGetLPActivity(SCIP_ROW* row,
+                                   SCIP_SET* set,
+                                   SCIP_STAT* stat,
+                                   SCIP_LP* lp)
+    SCIP_Real SCIProwGetObjParallelism(SCIP_ROW* row,
+                                       SCIP_SET* set,
+                                       SCIP_LP* lp)
+    SCIP_Real SCIPcolGetObj(SCIP_COL *col)
+
 cdef extern from "scip/scipdefplugins.h":
     SCIP_RETCODE SCIPincludeDefaultPlugins(SCIP* scip)
 
@@ -1661,21 +1676,6 @@ cdef extern from "scip/pub_lp.h":
     SCIP_ROW** SCIPcolGetRows(SCIP_COL* col)
     SCIP_Real* SCIPcolGetVals(SCIP_COL* col)
     int SCIPcolGetIndex(SCIP_COL* col)
-    SCIP_Real SCIPcolGetObj(SCIP_COL *col)
-
-cdef extern from "scip/lp.h":
-    SCIP_Real SCIPlpGetObjNorm(SCIP_LP* lp)
-    void SCIPlpRecalculateObjSqrNorm(SCIP_SET* set, SCIP_LP* lp)
-    SCIP_Real SCIProwGetNorm(SCIP_ROW* row)
-    SCIP_Real SCIProwGetDualsol(SCIP_ROW* row)
-    int SCIProwGetAge(SCIP_ROW* row)
-    SCIP_Real SCIProwGetLPActivity(SCIP_ROW* row,
-                                   SCIP_SET* set,
-                                   SCIP_STAT* stat,
-                                   SCIP_LP* lp)
-    SCIP_Real SCIProwGetObjParallelism(SCIP_ROW* row,
-                                       SCIP_SET* set,
-                                       SCIP_LP* lp)
     SCIP_Real SCIPcolGetObj(SCIP_COL *col)
 
 cdef extern from "scip/def.h":
