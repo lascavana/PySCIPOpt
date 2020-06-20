@@ -1661,6 +1661,7 @@ cdef extern from "scip/scip_tree.h":
     SCIP_NODE* SCIPgetBestLeaf(SCIP* scip)
     SCIP_NODE* SCIPgetBestNode(SCIP* scip)
     SCIP_NODE* SCIPgetBestboundNode(SCIP* scip)
+    SCIP_NODE* SCIPgetFocusNode(SCIP* scip)
 
 cdef extern from "scip/scip_var.h":
     SCIP_RETCODE SCIPchgVarBranchPriority(SCIP* scip, SCIP_VAR* var, int branchpriority)

@@ -1677,6 +1677,10 @@ cdef class Model:
         """gets the node with smallest lower bound from the tree (child, sibling, or leaf)."""
         return Node.create(SCIPgetBestboundNode(self._scip))
 
+    def getFocusNode(self):
+        """gets focus node in the tree."""
+        return Node.create(SCIPgetFocusNode(self._scip))
+
     def getOpenNodes(self):
         """access to all data of open nodes (leaves, children, and siblings)
 
