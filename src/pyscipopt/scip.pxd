@@ -1681,6 +1681,59 @@ cdef extern from "scip/lp.h":
 cdef extern from "scip/def.h":
     SCIP_Real REALABS(SCIP_Real x)
 
+cdef extern from "scip/type_misc.h":
+    ctypedef struct SCIP_REGRESSION:
+        SCIP_Real   intercept
+        SCIP_Real   slope
+        SCIP_Real   meanx
+        SCIP_Real   meany
+        SCIP_Real   sumxy
+        SCIP_Real   variancesumx
+        SCIP_Real   variancesumy
+        SCIP_Real   corrcoef
+        int         nobservations
+
+cdef extern from "time.h":
+    ctypedef long clock_t
+
+cdef extern from "scip/struct_clock.h":
+    ctypedef struct SCIP_CPUCLOCK:
+        clock_t     user
+
+    ctypedef struct SCIP_WALLCLOCK:
+        long    sec
+        long    usec
+
+    ctypedef union SCIP_CLOCK_DATA:
+        SCIP_CPUCLOCK   cpuclock
+        SCIP_WALLCLOCK   wallclock
+
+    ctypedef enum SCIP_CLOCKTYPE:
+        SCIP_CLOCKTYPE_DEFAULT = 0
+        SCIP_CLOCKTYPE_CPU     = 1
+        SCIP_CLOCKTYPE_WALL    = 2
+
+    ctypedef struct SCIP_CLOCK:
+        # SCIP_CLOCK_DATA  data
+        SCIP_Real        lasttime
+        int              nruns
+        SCIP_CLOCKTYPE   clocktype
+        SCIP_Bool        usedefault
+        SCIP_Bool        enabled
+
+cdef extern from "scip/type_history.h":
+    ctypedef struct SCIP_HISTORY:
+        SCIP_Real   pscostcount [2]
+        SCIP_Real   pscostweightedmean [2]
+        SCIP_Real   pscostvariance [2]
+        SCIP_Real   vsids [2]
+        SCIP_Real   conflengthsum [2]
+        SCIP_Real   inferencesum [2]
+        SCIP_Real   cutoffsum [2]
+        SCIP_Longint    nactiveconflicts [2]
+        SCIP_Longint    nbranchings [2]
+        SCIP_Longint    branchdepthsum [2]
+
 cdef extern from "scip/scip_tree.h":
     SCIP_RETCODE SCIPgetOpenNodesData(SCIP* scip, SCIP_NODE*** leaves, SCIP_NODE*** children, SCIP_NODE*** siblings, int* nleaves, int* nchildren, int* nsiblings)
     SCIP_Longint SCIPgetNLeaves(SCIP* scip)
