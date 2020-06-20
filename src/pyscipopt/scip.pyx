@@ -14,6 +14,7 @@ from cpython.pycapsule cimport PyCapsule_New, PyCapsule_IsValid, PyCapsule_GetPo
 from libc.stdlib cimport malloc, free
 from libc.stdio cimport fdopen
 from libc.math cimport sqrt as SQRT
+from numpy.math cimport INFINITY, NAN
 
 include "expr.pxi"
 include "lp.pxi"
