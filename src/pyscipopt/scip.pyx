@@ -3630,6 +3630,9 @@ cdef class Model:
             branchrule.branchexeclp(self._scip, branchrule, allowaddcons, &result)
             return result
 
+    def getVarPseudocostScore(self, variable, lp_val):
+        return SCIPgetVarPseudocostScore(self._scip, (<Variable>variable).scip_var, lp_val)
+
     def getLPBranchCands(self):
         """gets branching candidates for LP solution branching (fractional variables) along with solution values,
         fractionalities, and number of branching candidates; The number of branching candidates does NOT account
@@ -3679,6 +3682,7 @@ cdef class Model:
         PY_SCIP_CALL(SCIPgetPseudoBranchCands(self._scip, &cands, &ncands, &npriocands))
 
         return ([Variable.create(cands[i]) for i in range(ncands)], npriocands)
+
 
     def branchVar(self, variable):
         """Branch on a non-continuous variable.

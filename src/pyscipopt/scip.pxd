@@ -1765,6 +1765,7 @@ cdef extern from "scip/scip_tree.h":
 
 cdef extern from "scip/scip_var.h":
     SCIP_RETCODE SCIPchgVarBranchPriority(SCIP* scip, SCIP_VAR* var, int branchpriority)
+    SCIP_Real SCIPgetVarPseudocostScore(SCIP* scip, SCIP_VAR* var, SCIP_Real solval)
 
 cdef extern from "scip/struct_stat.h":
     ctypedef struct SCIP_STAT:
